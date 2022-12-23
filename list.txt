@@ -1,0 +1,20 @@
+01. ExpressJS 
+02. ExpressJS View Engine
+03. ExpressJS Template
+04. ExpressJS blog design templates with tailwindcss
+05. DB connection
+06. data insert (User Reg, content)
+07. auth middleware
+08. Admin Panel
+09. Blog List (get blog list in db)
+10. pagination 
+
+const user = await User.findOne({ username: username })
+
+const user = await User.updateOne({ username: username }, { name: 'DDname', email: 'juwel2@fg.com' });
+
+const user = await User.deleteOne({ username: username });
+
+
+
+Ju@123456

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('adminHead'); -%>
+    </head>
+
+    <body data-sidebar="dark">
+        <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+            <%- include('adminHeader'); -%>
+            <!-- ========== Left Sidebar Start ========== -->
+            <%- include('adminLeftSidebar'); -%>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">User Edit</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item">
+                                                <a href="javascript: void(0);">Dashboard</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">User Edit</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12 mb-4 d-flex justify-content-center">
+
+                                <% if(flashsms == ''){}else{ %>
+                                <div class="alert alert-success  alert-dismissible fade show mb-0" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong><%= flashsms %>!</strong>
+                                </div>
+                                <% }; %>
+
+                                <% if(errors){ errors.forEach(function(error){ %>
+                                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong><%= error.msg %>!</strong>
+                                </div>
+                                <% }); }; %>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <form class="card-body" action="/dashboard/user-update" method="post">
+                                        <h4 class="card-title">User Edit</h4>
+                                        <input type="hidden" name="id" value="<%= userEdit._id %>">
+                                        <div class="mb-3 row">
+                                            <label for="example-text-input" class="col-md-2 col-form-label">Name</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" value="<%= userEdit.name %>"
+                                                    name="name">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="example-search-input"
+                                                class="col-md-2 col-form-label">Username</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="search"
+                                                    value="<%= userEdit.username %>" name="username">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="example-email-input"
+                                                class="col-md-2 col-form-label">Email</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="email" value="<%= userEdit.email %>"
+                                                    name="email">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-2 col-form-label">Role</label>
+                                            <div class="col-md-10">
+                                                <select class="form-select" name="role">
+                                                    <option value="admin" <% if(userEdit.role == 'admin'){ %> selected
+                                                        <% } %>>Admin</option>
+                                                    <option value="user" <% if(userEdit.role == 'user'){ %> selected
+                                                        <% } %>>User</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                <!-- footer -->
+                <%- include('adminFooter'); -%>
+                <!-- footer -->
+            </div>
+            <!-- end main content-->
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- JAVASCRIPT -->
+        <script src="<%= baseUrl %>/admin/assets/libs/jquery/jquery.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts js -->
+        <script src="<%= baseUrl %>/admin/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+        <!-- jquery.vectormap map -->
+        <script src="<%= baseUrl %>/admin/assets/libs/jqvmap/jquery.vmap.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
+
+        <script src="<%= baseUrl %>/admin/assets/js/pages/dashboard.init.js"></script>
+
+        <script src="<%= baseUrl %>/admin/assets/js/app.js"></script>
+
+
+        <!-- Required datatable js -->
+        <script src="<%= baseUrl %>/admin/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Buttons examples -->
+        <script src="<%= baseUrl %>/admin/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/jszip/jszip.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="<%= baseUrl %>/admin/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+        <!-- Responsive examples -->
+        <script
+            src="<%= baseUrl %>/admin/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script
+            src="<%= baseUrl %>/admin/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <!-- Datatable init js -->
+        <script src="<%= baseUrl %>/admin/assets/js/pages/datatables.init.js"></script>
+    </body>
+
+</html>

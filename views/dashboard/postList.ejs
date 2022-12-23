@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <%- include('adminHead'); -%>
+    </head>
+
+    <body data-sidebar="dark">
+
+        <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <%- include('adminHeader'); -%>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <%- include('adminLeftSidebar'); -%>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12  d-flex justify-content-center">
+                                <% if(flashsms == ''){ }else{ %>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong><%= flashsms %></strong>
+                                </div>
+                                <% }; %>
+                                <% if(flasherr == ''){ }else{ %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong> <%= flasherr %></strong>
+                                </div>
+                                <% }; %>
+                            </div>
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Post List</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Upzet</a></li>
+                                            <li class="breadcrumb-item active">Post List</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <!-- start row -->
+                        <div class="row">
+                            <div class="col-12  d-flex justify-content-center">
+                                <% if(flashsms == ''){ }else{ %>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong><%= flashsms %></strong>
+                                </div>
+                                <% }; %>
+                                <% if(flasherr == ''){ }else{ %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong> <%= flasherr %></strong>
+                                </div>
+                                <% }; %>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="card-title">
+                                            Posts List
+                                            <a href="/dashboard/new-post"
+                                                class="btn btn-success waves-effect waves-light">
+                                                <i class="ri-play-list-add-line align-middle me-2"></i> Add New Post
+                                            </a>
+                                        </div>
+                                        <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Category</th>
+                                                    <th>Auth</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(posts){ posts.forEach(function(post){ %>
+                                                <tr id="<%= post._id %>" baseurl="<%= baseUrl %>">
+                                                    <td><%= post.title %></td>
+                                                    <td><%= post.category %></td>
+                                                    <td><%= post.author %></td>
+                                                    <td>
+                                                        <div class="inline-flex rounded-md shadow-sm" role="group">
+                                                            <button type="button"
+                                                                class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-transparent rounded-l-lg border border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                                                                <a
+                                                                    href="/dashboard/post-edit?id=<%= post._id %>">Edit</a>
+                                                            </button>
+                                                            <button type="button"
+                                                                class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-transparent rounded-r-md border border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 remove">
+                                                                Delete
+                                                            </button>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                                <% }); }else{ %>
+                                                <tr>
+                                                    <td class="text-center" colspan="5">Post not found</td>
+                                                </tr>
+                                                <% }; %>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                <script type="text/javascript">
+
+                    $(".remove").click(function () {
+                        var id = $(this).parents("tr").attr("id");
+                        var baseUrl = $(this).parents("tr").attr("baseurl");
+                        swal(
+                            {
+                                title: 'Are you sure?',
+                                text: "It will be Delete Now!",
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, Delete it!',
+                                showLoaderOnConfirm: true,
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url: `${baseUrl}/dashboard/post-del?id=${id}`,
+                                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                                        success: function (data) {
+                                            console.log('data : ', data);
+                                            $("#" + id).remove();
+                                            console.log('id', id);
+                                            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                                        }
+                                    });
+                                } else {
+                                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                                }
+                            }
+                        );
+                    });
+                </script>
+            </div>
+            <!-- end main content-->
+
+            <%- include('adminFooter'); -%>
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- JAVASCRIPT -->
+        <!-- JAVASCRIPT -->
+        <script src="<%= baseUrl; %>/admin/assets/libs/jquery/jquery.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts js -->
+        <script src="<%= baseUrl; %>/admin/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+        <!-- jquery.vectormap map -->
+        <script src="<%= baseUrl; %>/admin/assets/libs/jqvmap/jquery.vmap.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
+
+        <script src="<%= baseUrl; %>/admin/assets/js/pages/dashboard.init.js"></script>
+
+        <script src="<%= baseUrl; %>/admin/assets/js/app.js"></script>
+
+    </body>
+
+</html>

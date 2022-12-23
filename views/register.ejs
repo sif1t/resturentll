@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body class="bg-gray-700">
+    <div class="container mx-auto">
+      <!-- Header -->
+      <div><%- include('header') -%></div>
+      <!-- Header -->
+      <!-- Main -->
+      <div class="w-full bg-black p-1"></div>
+        <% if(errors){ errors.forEach(function(error){ %>
+        <div class="w-full text-center mb-4">
+          <div
+            class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+            role="alert"
+          >
+            <span class="font-medium"><%= error.msg %></span>
+          </div>
+        </div>
+        <% }); }; %>
+
+        <div class="w-full text-center mb-4"><h1><%= title %></h1></div>
+        <div class="flex justify-center items-center content-center">
+          <div class="w-7/12 bg-black rounded-md p-12">
+            <form action="/users/register" method="post">
+              <div class="mb-6">
+                <div>
+                  <label
+                    for="name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Full name</label
+                  >
+                  <input
+                    type="text"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    id="name"
+                    name="name"
+                    placeholder="Full Name"
+                  />
+                </div>
+              </div>
+              <div class="mb-6">
+                <div>
+                  <label
+                    for="Username"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >Username</label
+                  >
+                  <input
+                    type="text"
+                    id="Username"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Username"
+                    name="username"
+                  />
+                </div>
+              </div>
+              <div class="mb-6">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="john.doe@company.com"
+                  name="email"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  id="password"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="•••••••••"
+                  name="password"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  id="password2"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="•••••••••"
+                  name="password2"
+                />
+              </div>
+              <button
+                type="submit"
+                name="submit"
+                 class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+
+              
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Main -->
+      <!-- footer -->
+      <div class="w-full"><%- include('footer'); -%></div>
+      <!-- footer -->
+    </div>
+
+    <script src="./assets/js/flowbite.js"></script>
+  </body>
+</html>

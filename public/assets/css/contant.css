@@ -1,0 +1,43 @@
+
+
+
+.background{
+    background-image: url(/assets/img/banner\ 1.png);
+    background-attachment: fixed;
+    padding: 200px;
+   
+  
+}
+
+
+.food{
+    text-align: center;
+}
+.body{
+    background-color:#56535a;
+    border: 30px;
+}
+.all12{
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px black;
+}
+.all12:hover{
+  
+   
+    box-shadow: 5px 5px 5px 5px;
+    transition: 2s;
+    background: rgba(0, 0, 0, 0.5);
+
+}
+
+
+   .footer{
+    background-color: black;
+   }
+   .color{
+    background-color: wheat;
+   }
+    
+
+
+

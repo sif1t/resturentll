@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/assets/css/contant.css">
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+
+  <body class="bg-black">
+    <div class="container mx-auto">
+
+      <!-- Header -->
+      <div class="w-full bg-white"></div>
+      <%- include('header'); -%>
+      <!-- Header -->
+      <!-- Main -->
+      <div class="background"></div>
+      <br>
+     <div class="food">
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Wellcome To Food King</button>
+    </div>
+
+
+
+
+      <div class="w-full bg-black">
+        <% if(flashsms == ''){}else{ %>
+        <div class="w-full text-center mb-4">
+          <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+            role="alert">
+            <span class="font-medium"><%= flashsms %></span>
+          </div>
+        </div>
+        <% }; %>
+        
+<div class="">
+  <div class=" w-full grid grid-cols-4 gap-4 content-center p-3">
+    <% if(posts){ posts.forEach(function(post){ %>
+    <div
+      class=" all12 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <a href="<%= baseUrl %>/news/<%= post.slug %>">
+        <img class="rounded-t-lg" src="<%= baseUrl %>/uploads/<%= post.featured_image %>" alt="" />
+      </a>
+      <div class="p-5">
+        <a href="<%= baseUrl %>/news/<%= post.slug %>">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <%= post.title %>
+          </h5>
+        </a>
+        <a href="<%= baseUrl %>/news/<%= post.slug %>"
+          class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 ">
+          <div class="m-1">more...</div>
+          <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <% }); }; %>
+  </div>
+
+</div>
+        
+        
+
+        <div class="backgrounds">
+           <img src="/assets/img/baner3.png" width="100%">
+        </div>
+        <br>
+
+        <div class="food">
+          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Our Popular Food</button>
+        </div>
+    
+
+<div class="">
+  <div class="w-full grid grid-cols-4 gap-4 content-center p-3">
+    <% if(posts){ posts.forEach(function(post){ %>
+    <div
+      class="all12 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <a href="<%= baseUrl %>/news/<%= post.slug %>">
+        <img class="rounded-t-lg" src="<%= baseUrl %>/uploads/<%= post.featured_image %>" alt="" />
+      </a>
+      <div class="p-5">
+        <a href="<%= baseUrl %>/news/<%= post.slug %>">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <%= post.title %>
+          </h5>
+        </a>
+        <a href="<%= baseUrl %>/news/<%= post.slug %>"
+          class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 p-2 ">
+          <div class="m-1">more...</div>
+          <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <% }); }; %>
+  </div>
+</div>
+
+  
+
+
+</div>
+
+               
+      </div>
+      <!-- Main -->
+      <!-- footer -->
+      <div class="w-full"></div><%- include('footer'); -%></div>
+      <!-- footer -->
+    </div>
+
+    <script src="./assets/js/flowbite.js"></script>
+  </body>
+
+</html>

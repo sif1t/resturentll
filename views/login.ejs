@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body class="bg-black">
+    <div class="container mx-auto">
+      <!-- Header -->
+      <div class="w-full bg-blue-700"><%- include('header'); -%></div>
+      <!-- Header -->
+      <!-- Main -->
+      <div class="w-full bg-black p-8">
+        <div class="w-full text-center mb-4"><h1><%= title %></h1></div>
+        <% if(flashsms){ %>
+        <div class="w-full text-center mb-2">
+          <div
+              
+          >
+            <span class="font-medium"><%= flashsms %></span>
+          </div>
+        </div>
+        <% }; %>
+
+        <div class="flex justify-center items-center content-center">
+          <div class="w-7/12 bg-gray-800 rounded-md p-12">
+            <form action="/users/login" method="post">
+              <div class="mb-6">
+                <label for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Username</label>
+                <input type="text" id="username"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Enter Username" required="" name="username" />
+              </div>
+              <div class="mb-6">
+                <label for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
+                <input type="password" id="password"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="•••••••••" required="" name="password" />
+              </div>
+              <button type="submit" name="submit"
+                 class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+
+
+                login
+              </button>
+             
+              
+              <div class="mt-2 mb-4">
+                Don't have an account yet?
+                <a href="/register"
+                   class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+
+                  Sign
+                  Up</a>
+                </div>
+                NOW!
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Main -->
+      <!-- footer -->
+      <div class="w-full"><%- include('footer'); -%></div>
+      <!-- footer -->
+    </div>
+   
+    <script src="./assets/js/flowbite.js"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/assets/css/contant.css">
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+
+  <body class="bg-gray-700">
+    <div class="container mx-auto">
+      <!-- Header -->
+      <div class="w-full bg-slate-400"></div>
+      <%- include('header'); -%>
+      <!-- Header -->
+      <!-- Main -->
+      
+      <div class="w-full bg-gray-700 ">
+        <% if(flashsms == ''){}else{ %>
+        <div class="w-full text-center mb-4">
+          <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+            role="alert">
+            <span class="font-medium"><%= flashsms %></span>
+          </div>
+        </div>
+        <% }; %>
+
+      
+        <div class="w-full p-2">
+            
+
+            <div class="w-full p-3">
+                <div class="">
+                    <a href="<%= baseUrl %>/news/<%= post.slug %>">
+                        <img class="rounded-t-lg" src="<%= baseUrl %>/uploads/<%= post.featured_image %>" alt="" width="450px" height="250px" />
+                      </a>
+                </div>
+              <h1 class="text-3xl"><%= post.title %></h1>
+            </div>
+            <div class="w-full p-2">
+              <%- post.description -%>
+            </div>
+          </div>
+
+        
+      </div>
+      <!-- Main -->
+      <!-- footer -->
+      <div class="w-full"><%- include('footer'); -%></div>
+      <!-- footer -->
+    </div>
+
+    <script src="./assets/js/flowbite.js"></script>
+  </body>
+
+</html>

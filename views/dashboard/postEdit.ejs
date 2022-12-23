@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <%- include('adminHead'); -%>
+    </head>
+
+    <body data-sidebar="dark">
+
+        <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <%- include('adminHeader'); -%>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!--- Sidemenu -->
+                    <%- include('adminLeftSidebar'); -%>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Post Edit</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Upzet</a></li>
+                                            <li class="breadcrumb-item active">Post Edit</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <!-- start row -->
+                        <div class="row">
+                            <div class="col-12  d-flex justify-content-center">
+                                <% if(flashsms == ''){ }else{ %>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong><%= flashsms %></strong>
+                                </div>
+                                <% }; %>
+                                <% if(flasherr == ''){ }else{ %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong> <%= flasherr %></strong>
+                                </div>
+                                <% }; %>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <% if(errors){ errors.forEach(function(error){ %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                    <strong><%= error.msg %></strong>
+                                </div>
+                                <% }); }; %>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <form class="card-body" action="/dashboard/post-image" method="post"
+                                        enctype='multipart/form-data'>
+                                        <input type="hidden" name="id" value="<%= post._id %>">
+                                        <div class="mb-3 row">
+                                            <div class="col-md-12">
+                                                <img src="<%= baseUrl; %>/uploads/<%= post.featured_image %>"
+                                                    alt="featured image" style="width: 300px;">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="name" class="col-md-2 col-form-label">Featured Image</label>
+                                            <div class="col-md-10">
+                                                <input type="file" class="filestyle" data-input="false"
+                                                    name="featured_image" data-buttonname="btn-secondary">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <form class="card-body" action="/dashboard/post-update" method="post">
+                                        <input type="hidden" name="id" value="<%= post._id %>">
+                                        <div class="mb-3 row">
+                                            <label for="name" class="col-md-2 col-form-label">Title</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" value="<%= post.title %>"
+                                                    name="title">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="name" class="col-md-2 col-form-label">Description</label>
+                                            <div class="col-md-10">
+                                                <textarea id="elm1"
+                                                    name="description"><%= post.description %></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-2 col-form-label">Category</label>
+                                            <div class="col-md-10">
+                                                <select class="form-select" name="category">
+                                                    <option value="">Selecte Category</option>
+                                                    <% if(categoryList){ categoryList.forEach(function(cat){ %>
+                                                    <option value="<%= cat._id %>" <% if(post.category == cat._id){ %>
+                                                        selected <% } %>>
+                                                        <%= cat.title %></option>
+                                                    <% });  }; %>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="name" class="col-md-2 col-form-label">Tag</label>
+                                            <div class="col-md-10">
+                                                <textarea class="form-control"
+                                                    name="tag"><%= post.description %></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="username" class="col-md-2 col-form-label">SEO
+                                                Description</label>
+                                            <div class="col-md-10">
+                                                <textarea id="seo_description" name="seo_description"
+                                                    class="form-control" maxlength="225" rows="3"
+                                                    placeholder="This seo description has a limit of 130 chars."
+                                                    spellcheck="false"><%= post.seo_description %></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="email" class="col-md-2 col-form-label">SEO Keywords</label>
+                                            <div class="col-md-10">
+                                                <textarea id="seo_keywords" name="seo_keywords" class="form-control"
+                                                    maxlength="225" rows="3"
+                                                    placeholder="This seo keywords has a limit of 150 chars."
+                                                    spellcheck="false"><%= post.seo_keywords %></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-primary mt-2">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+            </div>
+            <!-- end main content-->
+
+            <%- include('adminFooter'); -%>
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- JAVASCRIPT -->
+        <!-- JAVASCRIPT -->
+        <script src="<%= baseUrl; %>/admin/assets/libs/jquery/jquery.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts js -->
+        <script src="<%= baseUrl; %>/admin/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+
+        <!--tinymce js-->
+        <script src="<%= baseUrl; %>/admin/assets/libs/tinymce/tinymce.min.js"></script>
+
+        <!-- init js -->
+        <script src="<%= baseUrl; %>/admin/assets/js/pages/form-editor.init.js"></script>
+
+
+        <!-- jquery.vectormap map -->
+        <script src="<%= baseUrl; %>/admin/assets/libs/jqvmap/jquery.vmap.min.js"></script>
+        <script src="<%= baseUrl; %>/admin/assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
+
+        <script src="<%= baseUrl; %>/admin/assets/js/pages/dashboard.init.js"></script>
+
+        <script src="<%= baseUrl; %>/admin/assets/js/app.js"></script>
+
+    </body>
+
+</html>
